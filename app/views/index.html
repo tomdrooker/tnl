@@ -1,44 +1,419 @@
-
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 {% block pageTitle %}
-  GOV.UK Prototype Kit
+  Sign in using Government Gateway - GOV.UK
 {% endblock %}
 
 {% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+      <h2 class="govuk-error-summary__title" id="error-summary-title">There is a problem</h2>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        The GOV.UK Prototype Kit
-        <span class="govuk-caption-xl">{{releaseVersion}}</span>
-      </h1>{{releaseVersion | log }}
-      <p>
-        This kit lets you rapidly create HTML prototypes of GOV.UK services.
-      </p>
+      <div class="govuk-error-summary__body">
 
-      <p>
-        It contains all you need to prototype anything from simple static pages to complex, data-driven transactions.
-      </p>
+  <ul class="govuk-list govuk-error-summary__list">
+  <li>
+  <a href="#firstName">Please specify your first name</a>
+  </li>
 
-      <h2 class="govuk-heading-m">About this page</h2>
+  <li>
 
-      <p>We recommend you add links to your prototype to this page, rather than delete it.
-        You'll find this page in the kit at '/app/views/index.html'.</p>
+  <a href="#middleName">Please enter your middle name</a>
 
-      <p>You can change the service name by editing the file '/app/config.js'.</p>
+  </li>
 
-      <h2 class="govuk-heading-m">Examples and documentation</h2>
+  <li>
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/docs/tutorials-and-examples">Example pages and documentation</a></li>
-        <li>
-          <a href="https://design-system.service.gov.uk">
-            GOV.UK Design System
-          </a>
-        </li>
-      </ul>
-    </div>
+  <a href="#lastName">Please specify your last name</a>
+
+  </li>
+
+  <li>
+
+  <a href="#dob">Enter a valid date</a>
+
+  </li>
+
+  <li>
+
+  <a href="#postcode">Enter your postcode</a>
+
+  </li>
+
+  <li>
+
+  <a href="#phone">Please enter a valid mobile phone number - must be 11 numbers in length</a>
+
+  </li>
+
+  <li>
+
+  <a href="#emailAddress">Please enter a valid email address</a>
+
+  </li>
+
+  </ul>
+  </div>
+  </div>
+
+
+  <form method="post" action="/signIn" autocomplete="off" id="userDetailsForm">
+    <input type="hidden" name="userId" value="7fbebc2d-67cc-4fd3-bc32-96210799f6ae">
+
+    <h1 class="govuk-visually-hidden">Your details</h1>
+
+    <div class="govuk-form-group govuk-form-group--error">
+      <label class="govuk-label govuk-!-font-weight-bold" for="firstName">
+          First name
+      </label>
+
+  <span id="firstName-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Please specify your first name
+  </span>
+
+  <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="firstName" name="firstName" type="text" aria-describedby="firstName-error">
+  </div>
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label govuk-!-font-weight-bold" for="middleName">
+  Middle names (optional)
+  </label>
+
+
+
+
+  <span id="middleName-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Please enter your middle name
+  </span>
+
+  <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="middleName" name="middleName" type="text" aria-describedby="middleName-error">
+  </div>
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label govuk-!-font-weight-bold" for="lastName">
+  Last name
+  </label>
+
+
+
+
+  <span id="lastName-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Please specify your last name
+  </span>
+
+  <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="lastName" name="lastName" type="text" aria-describedby="lastName-error">
+  </div>
+
+
+
+
+
+
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <fieldset class="govuk-fieldset" aria-describedby="dob-error" role="group">
+
+  <legend class="govuk-fieldset__legend govuk-!-font-weight-bold">
+
+  Date of birth
+
+  </legend>
+
+
+  <span id="dob-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Enter a valid date
+  </span>
+
+  <div class="govuk-date-input" id="dob">
+
+  <div class="govuk-date-input__item">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-date-input__label" for="dob-day">
+  Day
+  </label>
+
+
+  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-day" name="dob-day" type="number" pattern="[0-9]*">
+  </div>
+  </div>
+
+  <div class="govuk-date-input__item">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-date-input__label" for="dob-month">
+  Month
+  </label>
+
+
+  <input class="govuk-input govuk-date-input__input govuk-input--width-2" id="dob-month" name="dob-month" type="number" pattern="[0-9]*">
+  </div>
+  </div>
+
+  <div class="govuk-date-input__item">
+  <div class="govuk-form-group">
+  <label class="govuk-label govuk-date-input__label" for="dob-year">
+  Year
+  </label>
+
+
+  <input class="govuk-input govuk-date-input__input govuk-input--width-4" id="dob-year" name="dob-year" type="number" pattern="[0-9]*">
+  </div>
+  </div>
+
+  </div>
+  </fieldset>
+
+
+  </div>
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label govuk-!-font-weight-bold" for="postcode">
+  Postcode
+  </label>
+
+
+
+
+  <span id="postcode-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Enter your postcode
+  </span>
+
+  <input class="govuk-input govuk-!-width-one-quarter govuk-input--error" id="postcode" name="postcode" type="text" aria-describedby="postcode-error">
+  </div>
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label govuk-!-font-weight-bold" for="phone">
+  Mobile phone number
+  </label>
+
+
+
+
+  <span id="phone-error" class="govuk-error-message">
+  <span class="govuk-visually-hidden">Error:</span> Please enter a valid mobile phone number - must be 11 numbers in length
+  </span>
+
+  <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="phone" name="phone" type="text" aria-describedby="phone-error">
+  </div>
+
+
+
+
+  <div class="govuk-form-group govuk-form-group--error">
+  <label class="govuk-label govuk-!-font-weight-bold" for="emailAddress">
+  Email address
+  </label>
+
+
+
+
+  <span id="emailAddress-error" class="govuk-error-message">
+    <span class="govuk-visually-hidden">Error:</span> Please enter a valid email address
+  </span>
+
+  <input class="govuk-input govuk-!-width-two-thirds govuk-input--error" id="emailAddress" name="emailAddress" type="text" aria-describedby="emailAddress-error">
+  </div>
+
+  <button class="govuk-button govuk-button--start">Continue</button>
+  </form>
+  </div>
 </div>
+{% endblock %}
 
+{% block bodyEnd %}
+ {{ super() }}
+
+
+ <script>
+ if (typeof NodeList !== 'undefined' && NodeList.prototype && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = Array.prototype.forEach;
+  }
+
+  document.querySelectorAll('.govuk-form-group--error, .govuk-input--error').forEach(function (element) {
+    element.classList.remove('govuk-form-group--error');
+    element.classList.remove('govuk-input--error');
+  });
+
+  document.querySelectorAll('.govuk-error-message, .govuk-error-summary, .govuk-error-summary__list li').forEach(function (element) {
+    element.style.display = 'none';
+  });
+
+  document.getElementById('userDetailsForm').addEventListener('submit', validateForm);
+
+  var firstName = document.getElementById('firstName');
+  var middleName = document.getElementById('middleName');
+  var lastName = document.getElementById('lastName');
+  var postcode = document.getElementById('postcode');
+  var dob = document.getElementById('dob');
+  var dobError = document.getElementById('dob-error');
+  var day = document.getElementById('dob-day');
+  var month = document.getElementById('dob-month');
+  var year = document.getElementById('dob-year');
+  var phone = document.getElementById('phone');
+  var emailAddress = document.getElementById('emailAddress');
+  var errorSummary = document.querySelector('.govuk-error-summary');
+  var nameObj = {
+    firstName: 'first',
+    middleName: 'middle',
+    lastName: 'last',
+  };
+
+  function validateForm(e) {
+    e.preventDefault();
+    var currentYear = new Date().getFullYear();
+    var birthdayArray = [day, month, year];
+
+    var isDataValid = {
+      firstName: true,
+      middleName: true,
+      lastName: true,
+      dob: true,
+      postcode: true,
+      phone: true,
+      emailAddress: true,
+    };
+
+    for (var key in isDataValid) {
+      (key === 'dob') ? removeDateOfBirthError() : removeTextInputError(this[key]);
+      isDataValid[key] = true;
+    };
+
+    var birthday = new Date(year.value, parseInt(month.value, 10) - 1, day.value);
+    var today = new Date(Date.now());
+    var todayAsDate = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+    var sixteenYearsAgoToday = new Date(today.getFullYear() - 16, today.getMonth(), today.getDate());
+    var ageCutOff = new Date(1900, 0, 1);
+
+    dobError.innerHTML = 'Enter a vaild date';
+    document.querySelectorAll('a[href="#dob"]')[0].innerHTML = 'Enter a vaild date';
+
+    if (birthday.getFullYear() !== parseInt(year.value, 10)) {
+      dateOfBirthError();
+    } else if (birthday.getDate() !== parseInt(day.value, 10)) {
+      dateOfBirthError();
+    } else if (birthday.getMonth() + 1 !== parseInt(month.value, 10)) {
+      dateOfBirthError();
+    } else if (birthday > sixteenYearsAgoToday) {
+      UCAgeAllowance('sub16');
+    } else if (birthday < ageCutOff) {
+      UCAgeAllowance('pre1900');
+    }
+
+    checkName(firstName);
+    if (middleName.value !== '') checkName(middleName);
+    checkName(lastName);
+
+    if (!/^(?![QVX])[A-Z]((?![IJZ])[A-Z][0-9](([0-9]?)|([ABEHMNPRVWXY]?))|([0-9]([0-9]?|[ABCDEFGHJKPSTUW]?))) ?[0-9]((?![CIKMOV])[A-Z]){2}$|^(BFPO)[ ]?[0-9]{1,4}$/i.test(postcode.value)) {
+      textInputError(postcode);
+    };
+
+    if (/[^0-9\s]/g.test(phone.value)) {
+      textInputError(phone);
+    } else if (phone.value.replace(/\s/g, '').length !== 11) {
+      textInputError(phone);
+    };
+    /*
+    if (!validator.isEmail(emailAddress.value)) {
+      textInputError(emailAddress);
+    };
+    */
+    function checkName(field) {
+      var invalidCharsPresent = field.value.match(/[^a-zA-Z-'\s.]/g);
+      if (invalidCharsPresent !== null) {
+        disallowedCharacters(field, invalidCharsPresent[0]);
+      } else if (/[-'\s.]/.test(field.value[0])) {
+        disallowedCharacters(field, field.value[0]);
+      } else if (!/^[a-zA-Z-'\s.]{1,200}$/.test(field.value)) {
+        var message = 'Please specify your ' + nameObj[field.id] + ' name';
+        document.getElementById(field.id + '-error').innerHTML = message;
+        document.querySelectorAll('a[href="#' + field.id + '"]')[0].innerHTML = message;
+        textInputError(field);
+      }
+    };
+
+    function disallowedCharacters(field, character) {
+      var nameSection = nameObj[field.id][0].toUpperCase() + nameObj[field.id].substring(1);
+      var message = nameSection +' name cannot include characters like '+ '" ' + character + '"';
+      document.getElementById(field.id + '-error').innerHTML = message;
+      document.querySelectorAll('a[href="#' + field.id + '"]')[0].innerHTML = message;
+      textInputError(field);
+    };
+
+    function focusSummary(id) {
+      document.querySelectorAll('a[href="#' + id + '"]')[0].parentElement.style.display = 'block';
+      errorSummary.style.display = 'block';
+      errorSummary.focus();
+      window.scroll(0, 0);
+    };
+
+    function textInputError(field) {
+      field.classList.add('govuk-input--error');
+      field.parentElement.classList.add('govuk-form-group--error');
+      document.getElementById(field.id + '-error').style.display = 'block';
+      isDataValid[field.id] = false;
+      focusSummary(field.id);
+    };
+
+    function removeTextInputError(field) {
+      field.classList.remove('govuk-input--error');
+      field.parentElement.classList.remove('govuk-form-group--error');
+      document.getElementById(field.id + '-error').style.display = 'none';
+      document.querySelectorAll('a[href="#' + field.id + '"]')[0].parentElement.style.display = 'none';
+    };
+
+    function dateOfBirthError() {
+      birthdayArray.forEach(function (dateSegment) {
+        dateSegment.classList.add('govuk-input--error');
+      });
+      dob.parentElement.parentElement.classList.add('govuk-form-group--error');
+      dobError.style.display = 'block';
+      isDataValid.dob = false;
+      focusSummary('dob');
+    };
+
+    function removeDateOfBirthError() {
+      birthdayArray.forEach(function (dateSegment) {
+        dateSegment.classList.remove('govuk-input--error');
+      });
+      dob.parentElement.parentElement.classList.remove('govuk-form-group--error');
+      dobError.style.display = 'none';
+      document.querySelectorAll('a[href="#dob"]')[0].parentElement.style.display = 'none';
+    };
+
+    function UCAgeAllowance(age) {
+      var message = age === 'pre1900' ? 'Please specify a later date' : 'You must be 16 or older to claim Universal Credit';
+      dobError.innerHTML = message;
+      document.querySelectorAll('a[href="#dob"]')[0].innerHTML = message;
+      dateOfBirthError();
+    };
+
+    function allTrue(obj) {
+      for (var i in obj) {
+        if (!obj[i]) {
+          return false;
+        };
+      };
+      return true;
+    };
+
+    if (allTrue(isDataValid)) {
+      document.getElementById('userDetailsForm').submit();
+    };
+  };
+</script>
 {% endblock %}
