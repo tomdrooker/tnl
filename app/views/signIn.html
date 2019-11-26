@@ -1,0 +1,51 @@
+{% extends 'layout.html' %}
+
+{% block pageTitle %}
+  Sign in using Government Gateway - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">Sign in using Government Gateway</h1>
+
+      <form action="/mfaCode" method="post" autocomplete="off">
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="governmentGatewayID">
+            Government Gateway user ID
+          </label>
+          <span class="govuk-hint">This could be up to 12 characters.</span>
+          <input class="govuk-input govuk-!-width-one-half" id="governmentGatewayID" name="governmentGatewayID" type="text">
+        </div>
+
+        <div class="govuk-form-group">
+          <label class="govuk-label" for="password">
+            Password
+          </label>
+          <input class="govuk-input govuk-!-width-one-half" id="password" name="password" type="password">
+        </div>
+
+        <button data-module="govuk-button" type="submit" class="govuk-button">
+          Sign in
+        </button>
+
+      </form>
+
+      <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href=""
+      {# {% if env === 'development' %}"https://bas-verification.herokuapp.com/live-2/email-verification/email?redirect=http://localhost:3000/gg-verify-id/&purpose=register&user=&department=DWP&mfaSignInOption="{% else %}"https://bas-verification.herokuapp.com/live-2/email-verification/email?redirect=https://nucc-proto.herokuapp.com/gg-verify-id/&purpose=register&user=&department=DWP&mfaSignInOption="{% endif %} #}
+      >Create sign in details</a></p>
+
+      <h2 class="govuk-heading-m">Problems signing in</h2>
+
+      <p class="govuk-body govuk-form-group">
+        <a class="govuk-link govuk-link--no-visited-state" href="/v4/GGSignIn/resetPass">I have forgotten my password</a><br>
+        <a class="govuk-link govuk-link--no-visited-state" href="/v4/GGSignIn/resetUserID">I have forgotten my Government Gateway user ID</a>
+      </p>
+
+      <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="">Get help with this page</a></p>
+
+    </div>
+</div>
+
+{% endblock %}

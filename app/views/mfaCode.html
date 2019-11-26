@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %}
+  Enter your access code
+{% endblock %}
+
+{% block beforeContent %}
+<div class="service-info ">
+    <div class="logo">
+        <span class="organisation-logo organisation-logo-medium"> HM Revenue &amp; Customs</span>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<form action="/thankYou" method="post" autocomplete="off">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <h1 class="govuk-heading-xl">Enter your access code</h1>
+    <p class="govuk-body">We just sent a 6 digit access code by text to: <b>*********123<b></p>
+    <p class="govuk-body">It may take a few minutes to arrive.</p>
+
+      {{ govukInput({
+        label: {
+            text: "Access code",
+            classes: "govuk-!-font-size-24 govuk-!-font-weight-bold"
+        },
+        id: "code",
+        name: "code",
+        classes: "govuk-!-width-one-half"
+      }) }}
+
+      <div class="govuk-form-group">
+        <div class="govuk-checkboxes__item">
+          <input class="govuk-checkboxes__input" id="remember-1" name="remember" type="checkbox" value="remember">
+          <label class="govuk-label govuk-checkboxes__label" for="remember-1">Remember this access code for 7 days</label>
+        </div>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button">
+        Sign in
+      </button>
+
+    </form>
+
+    <p class="govuk-body govuk-form-group">
+        <a class="govuk-link govuk-link--no-visited-state" href="">I can't get my access code</a>
+    </p>
+
+    <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="">Get help with this page</a></p>
+
+  </div>
+</div>
+{% endblock %}
